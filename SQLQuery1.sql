@@ -25,6 +25,8 @@ create table PLogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
 
+insert into PLogin values('plogin','123')
+
 create table ALogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
@@ -33,35 +35,13 @@ create table CLogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
 
-
-
-
-
-create table YM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
-
 create table PM(
+id varchar(20)primary key,
 name varchar(10),
 sex varchar(10),
 age int,
-adr varchar(10))
-
-create table NM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
-
-create table BM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
-
-
+adr varchar(10),
+Rname varchar(10)references medicine(Rname))
 
 insert into medicine values('ÄÚ¿Æ','¸ÐÃ°Ò©',10,100)
 insert into medicine values('Æ¤·ô¿Æ','Æ¤·ôÒ©',20,100)
