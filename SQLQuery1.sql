@@ -13,6 +13,11 @@ count int,
 Tprice int,
 primary key(Rname))
 
+insert into orders values('内科','Wang',20,3000)
+insert into orders values('皮肤科','Chen',20,3000)
+insert into orders values('眼科','Li',20,3000)
+insert into orders values('鼻科','Liu',20,3000)
+
 create table DLogin(
 Did varchar(10)primary key,
 Dpwd varchar(10))
