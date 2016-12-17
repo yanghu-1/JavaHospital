@@ -1,75 +1,128 @@
-import java.awt.BorderLayout;
-import java.sql.*;
-import javax.swing.*;
 
-public class PLogin {
-	public PLogin(){
-		Connection con=null;
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+
+
+
+class PLogin  {
+
+	private JPanel contentPane;
+	private  JTextField textField;
+	private  JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	//public static void main(String[] args) {
 		
-		Statement st=null;
-		if(con!=null)
-			System.out.println("连接成功");
 		
-			try {
-				st=con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	/**
+	 * Create the frame.
+	 */
+	public PLogin() {
 			
-		String sql="select * from medicine";
+	    JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		frame.setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JFrame frm=new JFrame("院长登录");
-		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel label = new JLabel("\u9662\u957F\u767B\u9646");
+		label.setFont(new Font("宋体", Font.PLAIN, 18));
+		label.setBounds(155, 10, 95, 33);
+		contentPane.add(label);
 		
-		JPanel top=new JPanel();
-		frm.getContentPane().add(top, BorderLayout.NORTH);
-		JLabel label=new JLabel("药房储存信息");
-		top.add(label);
+		JLabel label_1 = new JLabel("\u7528\u6237\u540D");
+		label_1.setFont(new Font("宋体", Font.PLAIN, 18));
+		label_1.setBounds(10, 50, 61, 33);
+		contentPane.add(label_1);
 		
-		JPanel center=new JPanel();
-		frm.getContentPane().add(center, BorderLayout.CENTER);
-		JTextArea area=new JTextArea();
+		JLabel lblNewLabel = new JLabel("\u5BC6  \u7801\r\n");
+		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel.setBounds(10, 123, 61, 33);
+		contentPane.add(lblNewLabel);
 		
+		textField = new JTextField();
+		textField.setBounds(99, 53, 187, 30);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
+		textField_1 = new JTextField();
+		textField_1.setBounds(99, 131, 187, 33);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
 		
-		try {
-			ResultSet rs=st.executeQuery(sql);
-			while (rs.next()){
-				
-			
+		JLabel label_2 = new JLabel("");
+		label_2.setFont(new Font("宋体", Font.PLAIN, 18));
+		label_2.setBounds(241, 196, 183, 42);
+		
+		JButton button = new JButton("登陆");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Connection con=null;
+				Statement st=null;
+				try {
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//建立数据库连接
+				try {
+					con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					st=con.createStatement();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+						
+				if(con!=null)
+					System.out.println("连接成功");
+					String sql="select * from PLogin where Pid='"+textField.getText()+"'and pwd='"+textField_1.getText()+"'";
+					try {
+					    ResultSet rs=st.executeQuery(sql);
+						if(rs.next()){
+							PChose pc=new PChose();
+						}
+						else label_2.setText("登陆失败");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();//增删改一般用executeUpdate方法
+					}
+					
+					try {
+						//rs.close();
+						st.close();
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				 
+					
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();//增删改一般用executeUpdate方法
-		}
+		});
+		button.setFont(new Font("宋体", Font.PLAIN, 15));
+		button.setBounds(10, 198, 69, 40);
+		contentPane.add(button);
 		
-		System.out.println(area.getText());
+		contentPane.add(label_2);
 		
-		try {
-			st.close();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		frm.setBounds(400,200,400,200);
-		frm.setVisible(true);
+		JButton btnNewButton = new JButton("\u9000\u51FA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(123, 198, 74, 40);
+		contentPane.add(btnNewButton);
 		
 	}
-	
-
 }
