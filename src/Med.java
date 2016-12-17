@@ -40,9 +40,10 @@ class Med  {
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		String[] h={"科室","药品","价格","总量"};
 		
 		
-		Connection con=null;
+		/*Connection con=null;
 		Message me=null;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -91,10 +92,7 @@ class Med  {
 				    ob[i][2]=medicine.getPrice();
 					ob[i][3]=medicine.getNum();
 				}
-				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		        DefaultTableModel model=new DefaultTableModel(ob,h);
-				table.setModel(model);
-			
+		       
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();//增删改一般用executeUpdate方法
@@ -106,8 +104,14 @@ class Med  {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		
+			}*/
+		SQLMessage sql=new SQLMessage();
+	    Object[][]ob=null;
+	    ob=sql.getMed();
+	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    DefaultTableModel model=new DefaultTableModel(ob,h);
+		table.setModel(model);
+
 		scrollPane.setViewportView(table);
 		
 		JButton btnNewButton = new JButton("\u9000\u51FA");

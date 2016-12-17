@@ -9,6 +9,9 @@ public class Message {
 	private String mName;
 	private int price;
 	private int num;
+	private String doctor;
+	private int count;
+	private int TPrice;
 	
 	public void setMName(String mName){
 		this.mName=mName;
@@ -64,6 +67,24 @@ public class Message {
 	}
 	public String getRName(){
 		return rName;
+	}
+	public void setDoctor(String doctor){
+		this.doctor=doctor;
+	}
+	public String getDoctor(){
+		return doctor;
+	}
+	public void setCount(int count){
+		this.count=count;
+	}
+	public int getCount(){
+		return count;
+	}
+	public void setTPrice(int TPrice){
+		this.TPrice=TPrice;
+	}
+	public int getTPrice(){
+		return TPrice;
 	}
 	
 	

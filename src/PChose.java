@@ -59,7 +59,7 @@ import java.awt.event.ActionEvent;
 					Med med=new Med();
 				}
 				if(radioButton_1.isSelected()){
-					
+					Oders od=new Oders();
 				}
 			}
 		});

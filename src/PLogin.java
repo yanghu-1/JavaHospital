@@ -82,9 +82,7 @@ class PLogin  {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-						
-				if(con!=null)
-					System.out.println("连接成功");
+				
 					String sql="select * from PLogin where Pid='"+textField.getText()+"'and pwd='"+textField_1.getText()+"'";
 					try {
 					    ResultSet rs=st.executeQuery(sql);
