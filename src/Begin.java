@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class Begin extends JFrame {
 
+
 	private JPanel contentPane;
 
 	/**
@@ -82,6 +83,9 @@ public class Begin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnNewRadioButton.isSelected()){
 					PLogin pl=new PLogin();
+				}
+				if(rdbtnNewRadioButton_4.isSelected()){
+					CLogin cl=new CLogin();
 				}
 			}
 		});

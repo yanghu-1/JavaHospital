@@ -1,7 +1,5 @@
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
 
 public class SQLMessage {
 	
@@ -25,9 +23,6 @@ public class SQLMessage {
 		
 		Statement st=null;
 		Object[][] ob=null;
-		if(con!=null)
-			System.out.println("连接成功");
-		
 			try {
 				st=con.createStatement();
 			} catch (SQLException e) {
@@ -75,8 +70,6 @@ public class SQLMessage {
 				e.printStackTrace();
 			}
 			return ob;
-			
-			
 	}
 	public Object[][] getOders(){
 		

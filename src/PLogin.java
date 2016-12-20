@@ -1,5 +1,4 @@
 
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,7 @@ class PLogin  {
 
 	private JPanel contentPane;
 	private  JTextField textField;
-	private  JTextField textField_1;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -54,10 +53,8 @@ class PLogin  {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(99, 131, 187, 33);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(99, 125, 187, 33);
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setFont(new Font("ËÎÌå", Font.PLAIN, 18));
@@ -83,10 +80,12 @@ class PLogin  {
 					e.printStackTrace();
 				}
 				
-					String sql="select * from PLogin where Pid='"+textField.getText()+"'and pwd='"+textField_1.getText()+"'";
+					String pwd= String.valueOf(passwordField.getPassword());
+					String sql="select * from PLogin where Pid='"+textField.getText()+"'and pwd='"+pwd+"'";
 					try {
 					    ResultSet rs=st.executeQuery(sql);
 						if(rs.next()){
+							label_2.setText("µÇÂ½³É¹¦");
 							PChose pc=new PChose();
 						}
 						else label_2.setText("µÇÂ½Ê§°Ü");
@@ -121,6 +120,9 @@ class PLogin  {
 		});
 		btnNewButton.setBounds(123, 198, 74, 40);
 		contentPane.add(btnNewButton);
+		
+	
+		contentPane.add(passwordField);
 		
 	}
 }
