@@ -13,6 +13,11 @@ count int,
 Tprice int,
 primary key(Rname))
 
+insert into orders values('内科','Wang',20,3000)
+insert into orders values('皮肤科','Chen',20,3000)
+insert into orders values('眼科','Li',20,3000)
+insert into orders values('鼻科','Liu',20,3000)
+
 create table DLogin(
 Did varchar(10)primary key,
 Dpwd varchar(10))
@@ -25,6 +30,8 @@ create table PLogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
 
+insert into PLogin values('plogin','123')
+
 create table ALogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
@@ -33,35 +40,15 @@ create table CLogin(
 Pid varchar(10)primary key,
 pwd varchar(10))
 
-
-
-
-
-create table YM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
+insert into CLogin values('clogin','123')
 
 create table PM(
+id varchar(20)primary key,
 name varchar(10),
 sex varchar(10),
 age int,
-adr varchar(10))
-
-create table NM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
-
-create table BM(
-name varchar(10),
-sex varchar(10),
-age int,
-adr varchar(10))
-
-
+adr varchar(10),
+Rname varchar(10)references medicine(Rname))
 
 insert into medicine values('内科','感冒药',10,100)
 insert into medicine values('皮肤科','皮肤药',20,100)
