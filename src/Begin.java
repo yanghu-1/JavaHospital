@@ -89,6 +89,9 @@ public class Begin extends JFrame {
 				if(rdbtnNewRadioButton_1.isSelected()){
 					ALogin al=new ALogin();
 				}
+				if(rdbtnNewRadioButton_2.isSelected()){
+					DLogin dl=new DLogin();
+				}
 				if(rdbtnNewRadioButton_4.isSelected()){
 					CLogin cl=new CLogin();
 				}
