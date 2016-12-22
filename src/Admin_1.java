@@ -78,10 +78,13 @@ class Admin_1 {
 					Admin_1_2 ad_2=new Admin_1_2();
 				}
 				if(rdbtnNewRadioButton_4.isSelected()){
-					CLogin cl=new CLogin();
+					Admin_1_5 ad_5=new Admin_1_5();
+				}
+				if(rdbtnNewRadioButton_2.isSelected()){
+					Admin_1_3 ad_3=new Admin_1_3();
 				}
 				if(rdbtnNewRadioButton_3.isSelected()){
-					MLogin ml=new MLogin();
+					Admin_1_4 ad_4=new Admin_1_4();
 				}
 			}
 		});
