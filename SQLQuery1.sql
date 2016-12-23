@@ -2,7 +2,7 @@
 create database hospital
 
 create table medicine(
-iden varchar(10)primary key,
+iden int primary key,
 MName varchar(40),
 price int,
 num int)
@@ -11,11 +11,6 @@ insert into orders values('内科','Wang',20,3000)
 insert into orders values('皮肤科','Chen',20,3000)
 insert into orders values('眼科','Li',20,3000)
 insert into orders values('鼻科','Liu',20,3000)
-
-create table DLogin(
-Did varchar(10)primary key,
-Dpwd varchar(10))
-
 
 
 create table PM(
@@ -26,14 +21,14 @@ age int not null,
 adr varchar(40),
 Rname varchar(10)not null)
 
-insert into medicine values('0001','A药',10,100)
-insert into medicine values('0002','B药',20,100)
-insert into medicine values('0003','C药',5,100)
-insert into medicine values('0004','D药',12,100)
+insert into medicine values(0001,'A药',10,100)
+insert into medicine values(0002,'B药',20,100)
+insert into medicine values(0003,'C药',5,100)
+insert into medicine values(0004,'D药',12,100)
 
 create table orders(
 Rname varchar(10)primary key,
-Doctor varchar(10),
+name varchar(40),
 count int,
 Tprice int)
 
@@ -41,11 +36,18 @@ Tprice int)
 create table DLogin(
 Did varchar(10)primary key,
 Dpwd varchar(10)not null,
-name varchar(40)not null)
+name varchar(40)not null,
+)
+
 insert into DLogin values('LI','123','李医生')
 insert into DLogin values('zhao','123','赵医生')
 insert into DLogin values('Deng','123','邓医生')
 insert into DLogin values('Wei','123','魏医生')
+
+insert into orders values('内科','李医生',80,2000)
+insert into orders values('皮肤科','赵医生',80,2000)
+insert into orders values('眼科','邓医生',80,2000)
+insert into orders values('鼻科','魏医生',80,2000)
 
 create table MLogin(
 Mid varchar(10)primary key,
@@ -80,9 +82,24 @@ age int not null,
 adr varchar(100),
 Rname varchar(10)references medicine(Rname))
 
+insert into PM values('0001','王','男',18,'上理','内科')
+insert into PM values('0002','李','男',20,'上理','内科')
+
 insert into medicine values('内科','感冒药',10,100)
 insert into medicine values('皮肤科','皮肤药',20,100)
 insert into medicine values('眼科','眼药',5,100)
 insert into medicine values('鼻科','鼻炎药',12,100)
 
+select * from PLogin where pid='plogin';
 
+create table Charge(
+id varchar(40)references PM(id),
+name varchar(40) not null,
+Fprice int)
+
+create table med(
+id varchar(40)references PM(id),
+name varchar(40) not null,
+MName varchar(40),
+num int,
+price int)

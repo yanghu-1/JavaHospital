@@ -13,6 +13,8 @@ class Doctor {
 	private JTable table_1;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -57,7 +59,7 @@ class Doctor {
 		contentPane.add(lblNewLabel_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(500, 10, 373, 416);
+		panel_1.setBounds(451, 10, 422, 416);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		panel_1.setVisible(false);
@@ -101,13 +103,14 @@ class Doctor {
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_7.setBounds(112, 170,137,30);
+		lblNewLabel_7.setBounds(112, 170,94,30);
 		panel_1.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("");
 		lblNewLabel_8.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_8.setBounds(112, 220, 137,30);
+		lblNewLabel_8.setBounds(112, 220, 100,30);
 		panel_1.add(lblNewLabel_8);
+		
 		
 		textField = new JTextField();
 		textField.setBounds(112, 270, 100, 30);
@@ -119,7 +122,7 @@ class Doctor {
 		panel_1.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnNewButton_2 = new JButton("\u786E\u8BA4");
+		JButton btnNewButton_2 = new JButton("\u6DFB\u52A0");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Connection con=null;
@@ -166,7 +169,7 @@ class Doctor {
 					e.printStackTrace();
 				}
 	         	
-	         	Connection co=null;
+	         	Connection con_1=null;
 				try {
 					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 				} catch (ClassNotFoundException e) {
@@ -175,30 +178,30 @@ class Doctor {
 				}
 				//建立数据库连接
 				try {
-					co=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					con_1=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-			    Statement ss=null;
+			    Statement st_1=null;
 	         	try {
-	         		 ss=co.createStatement();
+	         		 st_1=con_1.createStatement();
 	         	} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	         	String sql="insert into Med values('"+lblNewLabel_7.getText()+"', '"+lblNewLabel_8.getText()+"','"+textField.getText()+"','"+num+"','"+Tprice+"')";
 				try {
-					ss.executeUpdate(sql);
+					st_1.executeUpdate(sql);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();//增删改一般用executeUpdate方法
 				}
 				
 				try {
-					ss.close();
-					co.close();
+					st_1.close();
+					con_1.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -206,7 +209,7 @@ class Doctor {
 				
 
 		      	String[] h={"身份证","姓名","药品","数量","价格"};
-				Connection coo=null;
+				Connection con_2=null;
 				Message me=null;
 				try {
 					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -216,17 +219,17 @@ class Doctor {
 				}
 				//建立数据库连接
 				try {
-					coo=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					con_2=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				Statement sss=null;
+				Statement st_2=null;
 				Object[][] ob=null;
 				
 					try {
-						sss=coo.createStatement();
+						st_2=con_2.createStatement();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -235,7 +238,7 @@ class Doctor {
 					String sl="select * from Med where ID='"+lblNewLabel_7.getText()+"'";
 					ArrayList<Message> list=new ArrayList<Message>();
 					try {
-						ResultSet sr=sss.executeQuery(sl);
+						ResultSet sr=st_2.executeQuery(sl);
 						while (sr.next()){
 							me=new Message();
 							me.setID(sr.getString("ID"));
@@ -257,18 +260,14 @@ class Doctor {
 							
 						}
 						
-						/*table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				        DefaultTableModel model=new DefaultTableModel(ob,h);
-						table.setModel(model);*/
-					
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();//增删改一般用executeUpdate方法
 					}
 					
 					try {
-						st.close();
-						con.close();
+						st_2.close();
+						con_2.close();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -291,9 +290,189 @@ class Doctor {
 			}
 		});
 		btnNewButton_3.setFont(new Font("宋体", Font.PLAIN, 18));
-		btnNewButton_3.setBounds(186, 363, 84, 43);
+		btnNewButton_3.setBounds(122, 363, 84, 43);
 		panel_1.add(btnNewButton_3);
 		
+		JLabel lblNewLabel_9 = new JLabel("\u8BCA\u65AD\u8D39\u7528");
+		lblNewLabel_9.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_9.setBounds(249, 220, 84, 25);
+		panel_1.add(lblNewLabel_9);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("宋体", Font.PLAIN, 18));
+		textField_2.setBounds(249, 177, 84, 33);
+		panel_1.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(249, 277, 84, 33);
+		panel_1.add(textField_3);
+		textField_3.setColumns(10);
+		
+		JLabel lblNewLabel_10 = new JLabel("\u603B\u8D39\u7528");
+		lblNewLabel_10.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_10.setBounds(249, 320, 84, 30);
+		panel_1.add(lblNewLabel_10);
+		
+		JButton btnNewButton_5 = new JButton("\u63D0\u4EA4");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Connection con_3=null;
+				try {
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//建立数据库连接
+				try {
+					con_3=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			    Statement st_3=null;
+	         	try {
+	         		 st_3=con_3.createStatement();
+	         	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	         	
+	         	String sql_3="insert into Charge values('"+lblNewLabel_7.getText()+"', '"+lblNewLabel_8.getText()+"','"+Integer.parseInt(textField_3.getText())+"')";
+				try {
+					st_3.executeUpdate(sql_3);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();//增删改一般用executeUpdate方法
+				}
+				
+				try {
+					st_3.close();
+					con_3.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Connection con_4=null;
+				try {
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//建立数据库连接
+				try {
+					con_4=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			    Statement st_4=null;
+	         	try {
+	         		 st_4=con_4.createStatement();
+	         	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	      
+	         	String sq_4="delete from PM where id='"+lblNewLabel_7.getText()+"'";
+				try {
+					st_4.executeUpdate(sq_4);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();//增删改一般用executeUpdate方法
+				}
+				
+				try {
+					st_4.close();
+					con_4.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Connection con_5=null;
+				Message me_5=null;
+				try {
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//建立数据库连接
+				try {
+					con_5=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Statement st_5=null;
+				Object[][] ob_5=null;
+					try {
+						st_5=con_5.createStatement();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+			      	String[] h_5={"科室","身份证","姓名","性别","年龄"};
+					String sql_5="select * from PM where RName='"+comboBox.getSelectedItem()+"'";
+					ArrayList<Message> list_5=new ArrayList<Message>();
+					try {
+						ResultSet rs_5=st_5.executeQuery(sql_5);
+						while (rs_5.next()){
+							me_5=new Message();
+							me_5.setRName(rs_5.getString("Rname"));
+							me_5.setID(rs_5.getString("ID"));
+							me_5.setName(rs_5.getString("name"));
+							me_5.setSex(rs_5.getString("sex"));
+							me_5.setAge(rs_5.getInt("age"));
+							//me.setAddress(rs.getString("adr"));
+							list_5.add(me_5);
+							}
+						ob_5=new Object[list_5.size()][5];
+						for(int i=0;i<list_5.size();i++)
+						{
+							Message medicine_5=(Message)list_5.get(i);
+							ob_5[i][0]=medicine_5.getRName();
+							ob_5[i][1]=medicine_5.getID();
+							ob_5[i][2]=medicine_5.getName();
+							ob_5[i][3]=medicine_5.getSex();
+							ob_5[i][4]=medicine_5.getAge();
+							
+						}
+						
+					
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();//增删改一般用executeUpdate方法
+					}
+					
+					try {
+						st_5.close();
+						con_5.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				    DefaultTableModel model_5=new DefaultTableModel(ob_5,h_5);
+					table.setModel(model_5);
+					scrollPane.setViewportView(table);
+					
+					panel_1.setVisible(false);
+					Warning wa=new Warning();
+			}
+				
+		});
+		btnNewButton_5.setFont(new Font("宋体", Font.PLAIN, 18));
+		btnNewButton_5.setBounds(249, 362, 78, 44);
+		panel_1.add(btnNewButton_5);
 		
 		JButton btnNewButton = new JButton("\u67E5\u627E");
 		btnNewButton.setBounds(325, 117, 82, 43);
@@ -317,7 +496,6 @@ class Doctor {
 				
 				Statement st=null;
 				Object[][] ob=null;
-				if(con!=null)
 				
 					try {
 						st=con.createStatement();
@@ -392,6 +570,75 @@ class Doctor {
 					
 					lblNewLabel_7.setText(id);
 					lblNewLabel_8.setText(name);
+					
+					String[] h_6={"身份证","姓名","药品","数量","价格"};
+					Connection con_6=null;
+					Message me=null;
+					try {
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//建立数据库连接
+					try {
+						con_6=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					Statement st_6=null;
+					Object[][] ob_6=null;
+					
+						try {
+							st_6=con_6.createStatement();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						String sql_6="select * from Med where ID='"+lblNewLabel_7.getText()+"'";
+						ArrayList<Message> list_6=new ArrayList<Message>();
+						try {
+							ResultSet rs_6=st_6.executeQuery(sql_6);
+							while (rs_6.next()){
+								me=new Message();
+								me.setID(rs_6.getString("ID"));
+								me.setName(rs_6.getString("name"));
+								me.setMName(rs_6.getString("MName"));
+								me.setNum(rs_6.getInt("num"));
+								me.setPrice(rs_6.getInt("price"));
+								list_6.add(me);
+								}
+							ob_6=new Object[list_6.size()][5];
+							for(int i=0;i<list_6.size();i++)
+							{
+								Message medicine=(Message)list_6.get(i);
+								ob_6[i][0]=medicine.getID();
+								ob_6[i][1]=medicine.getName();
+							    ob_6[i][2]=medicine.getMName();
+								ob_6[i][3]=medicine.getNum();
+								ob_6[i][4]=medicine.getPrice();
+								
+							}
+							
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();//增删改一般用executeUpdate方法
+						}
+						
+						try {
+							st_6.close();
+							con_6.close();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						table_1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					    DefaultTableModel model_6=new DefaultTableModel(ob_6,h_6);
+						table_1.setModel(model_6);
+						scrollPane.setViewportView(table);
 					
 					
 				}
