@@ -46,7 +46,7 @@ class CChose  {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnNewRadioButton.isSelected()){
-					Charge_1 c=new Charge_1();
+					ChoseTo ct=new ChoseTo();
 				}
 				if(rdbtnNewRadioButton_1.isSelected()){
 					Charge_2 cc=new Charge_2();
@@ -58,7 +58,7 @@ class CChose  {
 		btnNewButton.setBounds(6, 187, 82, 44);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("\u53D6\u6D88");
+		JButton btnNewButton_1 = new JButton("\u9000\u51FA");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frm.setVisible(false);

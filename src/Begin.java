@@ -81,6 +81,7 @@ public class Begin extends JFrame {
 		bg.add(rdbtnNewRadioButton_4);
 
 		JButton btnNewButton = new JButton("\u786E\u8BA4");
+		btnNewButton.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnNewRadioButton.isSelected()){
@@ -100,8 +101,18 @@ public class Begin extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(38, 289, 78, 35);
+		btnNewButton.setBounds(38, 289, 90, 41);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("\u5F00\u542F\u5927\u5385");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Hall hall=new Hall();
+			}
+		});
+		btnNewButton_1.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
+		btnNewButton_1.setBounds(226, 289, 111, 41);
+		contentPane.add(btnNewButton_1);
 	}
 
 }

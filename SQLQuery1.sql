@@ -93,13 +93,17 @@ insert into medicine values('±Ç¿Æ','±ÇÑ×Ò©',12,100)
 select * from PLogin where pid='plogin';
 
 create table Charge(
-id varchar(40)references PM(id),
+id varchar(40)primary key,
 name varchar(40) not null,
 Fprice int)
 
+
 create table med(
-id varchar(40)references PM(id),
+id varchar(40),
 name varchar(40) not null,
 MName varchar(40),
 num int,
 price int)
+
+delete from Charge
+delete from med

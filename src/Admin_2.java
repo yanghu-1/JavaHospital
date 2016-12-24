@@ -28,9 +28,9 @@ class Admin_2 {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frm.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		JLabel label = new JLabel("\u836F\u54C1\u4FE1\u606F\u5E93");
+		JLabel label = new JLabel("\u79D1\u5BA4\u8D26\u76EE\u4FE1\u606F");
 		label.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
-		label.setBounds(162, 10, 137, 28);
+		label.setBounds(132, 10, 137, 28);
 		contentPane.add(label);
 		
 		JPanel panel = new JPanel();
