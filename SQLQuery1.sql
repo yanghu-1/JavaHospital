@@ -7,27 +7,15 @@ MName varchar(40),
 price int,
 num int)
 
-insert into orders values('内科','Wang',20,3000)
-insert into orders values('皮肤科','Chen',20,3000)
-insert into orders values('眼科','Li',20,3000)
-insert into orders values('鼻科','Liu',20,3000)
-
-
-create table PM(
-id varchar(40)primary key,
-name varchar(40)not null,
-sex varchar(10)not null,
-age int not null,
-adr varchar(40),
-Rname varchar(10)not null)
-
 insert into medicine values(0001,'A药',10,100)
 insert into medicine values(0002,'B药',20,100)
 insert into medicine values(0003,'C药',5,100)
 insert into medicine values(0004,'D药',12,100)
 
+delete from medicine
+
 create table orders(
-Rname varchar(10)primary key,
+Rname varchar(20),
 name varchar(40),
 count int,
 Tprice int)
@@ -55,6 +43,8 @@ Mpwd varchar(10)not null,
 name varchar(40)not null)
 insert into MLogin values('Mlogin','123','药师')
 
+delete from MLogin
+
 create table PLogin(
 Pid varchar(10)primary key,
 pwd varchar(10)not null,
@@ -80,15 +70,20 @@ name varchar(40)not null,
 sex varchar(10) not null,
 age int not null,
 adr varchar(100),
-Rname varchar(10)references medicine(Rname))
+Rname varchar(10))
 
-insert into PM values('0001','王','男',18,'上理','内科')
-insert into PM values('0002','李','男',20,'上理','内科')
+delete from PM
 
-insert into medicine values('内科','感冒药',10,100)
-insert into medicine values('皮肤科','皮肤药',20,100)
-insert into medicine values('眼科','眼药',5,100)
-insert into medicine values('鼻科','鼻炎药',12,100)
+create table Oppoint(
+id varchar(40)primary key,
+name varchar(40)not null,
+sex varchar(10) not null,
+age int not null,
+adr varchar(100),
+Rname varchar(10))
+
+insert into	Oppoint values('0001','王','男',18,'上理','内科')
+insert into Oppoint values('0002','李','男',20,'上理','内科')
 
 select * from PLogin where pid='plogin';
 
@@ -97,10 +92,12 @@ id varchar(40)primary key,
 name varchar(40) not null,
 Fprice int)
 
+insert into Charge values('0001','王',120)
+
 
 create table med(
 id varchar(40),
-name varchar(40) not null,
+name varchar(40) ,
 MName varchar(40),
 num int,
 price int)

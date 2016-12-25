@@ -111,8 +111,17 @@ public class Begin extends JFrame {
 			}
 		});
 		btnNewButton_1.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
-		btnNewButton_1.setBounds(226, 289, 111, 41);
+		btnNewButton_1.setBounds(146, 289, 111, 41);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("\u7F51\u4E0A\u9884\u7EA6");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Appoint app=new Appoint();
+			}
+		});
+		btnNewButton_2.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
+		btnNewButton_2.setBounds(293, 289, 121, 41);
+		contentPane.add(btnNewButton_2);
 	}
-
 }

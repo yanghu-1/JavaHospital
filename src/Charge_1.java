@@ -242,7 +242,7 @@ import java.awt.event.ActionEvent;
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					String sql="delete from Oppoint where id='"+id+"'";
+					String sql="delete from Appoint where id='"+id+"'";
 					try {
 						st.executeUpdate(sql);
 					} catch (SQLException e) {
@@ -378,7 +378,7 @@ import java.awt.event.ActionEvent;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				String sql="delete from Oppoint where id='"+textField.getText()+"'";
+				String sql="delete from Appoint where id='"+textField.getText()+"'";
 				try {
 					st.executeUpdate(sql);
 				} catch (SQLException e) {

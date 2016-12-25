@@ -130,44 +130,99 @@ class Dispensing {
 		JButton btnNewButton_1 = new JButton("\u53D1\u836F");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Connection con=null;
-				try {
-					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				//建立数据库连接
-				try {
-					con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(table.getSelectedRow()!=-1)
+				{
+					panel.setVisible(true);
+					int row=table.getSelectedRow();
+					String MName=table.getValueAt(row, 0).toString();
+					int num=Integer.parseInt(table.getValueAt(row,1).toString());
+					
+					Connection con=null;
+					try {
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//建立数据库连接
+					try {
+						con=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				    Statement st=null;
+		         	try {
+		         		 st=con.createStatement();
+		         	} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		         	String sql="delete from Med where MName ='"+MName+"'";
+					try {
+						st.executeUpdate(sql);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();//增删改一般用executeUpdate方法
+					}
+					
+					try {
+						st.close();
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					Connection con_2=null;
+					try {
+						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//建立数据库连接
+					try {
+						con_2=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				    Statement st_2=null;
+		         	try {
+		         		 st_2=con_2.createStatement();
+		         	} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		         	String sql_1="update medicine set num=num-'"+num+"' where MName='"+MName+"'";
+					try {
+						st_2.executeUpdate(sql_1);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();//增删改一般用executeUpdate方法
+					}
+					
+					try {
+						st_2.close();
+						con_2.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					SQLMessage sm=new SQLMessage();
+				    Object[][]ob=null;
+				    ob=sm.getMed_1();
+				    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				    DefaultTableModel model=new DefaultTableModel(ob,h);
+					table.setModel(model);
+					
+					lblNewLabel_2.setText("发药成功");
 				}
 				
-			    Statement st=null;
-	         	try {
-	         		 st=con.createStatement();
-	         	} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	         	String sql="delete from Med where ID ='"+textField.getText()+"'";
-				try {
-					st.executeUpdate(sql);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();//增删改一般用executeUpdate方法
-				}
-				
-				try {
-					st.close();
-					con.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				lblNewLabel_2.setText("发药成功");
 				
 			}
 		});

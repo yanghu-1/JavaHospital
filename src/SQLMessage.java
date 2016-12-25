@@ -115,8 +115,8 @@ public class SQLMessage {
 				{
 					Message medicine=(Message)list.get(i);
 					ob[i][0]=medicine.getMName();
-					ob[i][2]=medicine.getNum();
-				    ob[i][1]=medicine.getPrice();
+					ob[i][1]=medicine.getNum();
+				    ob[i][2]=medicine.getPrice();
 					
 				}
 				
@@ -207,6 +207,7 @@ public class SQLMessage {
 			}
 			return ob;
 	}
+	
 	public Object[][] getCharge(){
 		Connection con=null;
 		Message me=null;
@@ -242,15 +243,17 @@ public class SQLMessage {
 					me.setID(rs.getString("ID"));
 					me.setName(rs.getString("name"));
 					me.setPrice(rs.getInt("Fprice"));
+					me.setDoctor(rs.getString("doctor"));
 					list.add(me);
 					}
-				ob=new Object[list.size()][3];
+				ob=new Object[list.size()][4];
 				for(int i=0;i<list.size();i++)
 				{
 					Message medicine=(Message)list.get(i);
 					ob[i][0]=medicine.getID();
 					ob[i][1]=medicine.getName();
 					ob[i][2]=medicine.getPrice();
+					ob[i][3]=medicine.getDoctor();
 				}
 			
 			} catch (SQLException e) {
@@ -354,7 +357,7 @@ public class SQLMessage {
 				e.printStackTrace();
 			}
 			
-			String sql="select * from Oppoint where Rname='"+str+"'";
+			String sql="select * from Appoint where Rname='"+str+"'";
 			ArrayList<Message> list=new ArrayList<Message>();
 			try {
 				ResultSet rs=st.executeQuery(sql);
@@ -495,22 +498,22 @@ public class SQLMessage {
 				ResultSet sr=st_2.executeQuery(sl);
 				while (sr.next()){
 					me=new Message();
-					me.setID(sr.getString("ID"));
-					me.setName(sr.getString("name"));
+					//me.setID(sr.getString("ID"));
+					//me.setName(sr.getString("name"));
 					me.setMName(sr.getString("MName"));
 					me.setNum(sr.getInt("num"));
 					me.setPrice(sr.getInt("price"));
 					list.add(me);
 					}
-				ob=new Object[list.size()][5];
+				ob=new Object[list.size()][3];
 				for(int i=0;i<list.size();i++)
 				{
 					Message medicine=(Message)list.get(i);
-					ob[i][0]=medicine.getID();
-					ob[i][1]=medicine.getName();
-				    ob[i][2]=medicine.getMName();
-					ob[i][3]=medicine.getNum();
-					ob[i][4]=medicine.getPrice();
+					//ob[i][0]=medicine.getID();
+					//ob[i][1]=medicine.getName();
+				    ob[i][0]=medicine.getMName();
+					ob[i][1]=medicine.getNum();
+					ob[i][2]=medicine.getPrice();
 					
 				}
 				

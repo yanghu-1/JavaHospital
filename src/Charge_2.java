@@ -64,32 +64,32 @@ import java.awt.event.ActionEvent;
 		
 		JLabel lblNewLabel_2 = new JLabel("\u8EAB\u4EFD\u8BC1");
 		lblNewLabel_2.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(10, 58, 65, 33);
+		lblNewLabel_2.setBounds(10, 46, 65, 33);
 		panel_1.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("\u59D3\u540D");
 		lblNewLabel_3.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(10, 118, 65, 33);
+		lblNewLabel_3.setBounds(10, 96, 65, 33);
 		panel_1.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("\u8D39\u7528");
 		lblNewLabel_4.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_4.setBounds(10, 178, 65, 33);
+		lblNewLabel_4.setBounds(10, 146, 65, 33);
 		panel_1.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_5.setBounds(132, 58, 110, 33);
+		lblNewLabel_5.setBounds(133, 46, 110, 33);
 		panel_1.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_6.setBounds(132, 118, 110, 33);
+		lblNewLabel_6.setBounds(132, 96, 110, 33);
 		panel_1.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setFont(new Font("宋体", Font.PLAIN, 18));
-		lblNewLabel_7.setBounds(132, 178, 110, 33);
+		lblNewLabel_7.setBounds(132, 146, 110, 33);
 		panel_1.add(lblNewLabel_7);
 		
 		JLabel lblNewLabel_8 = new JLabel("");
@@ -97,8 +97,18 @@ import java.awt.event.ActionEvent;
 		lblNewLabel_8.setBounds(167, 317, 144, 41);
 		panel_1.add(lblNewLabel_8);
 		
+		JLabel lblNewLabel_9 = new JLabel("\u533B\u751F");
+		lblNewLabel_9.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_9.setBounds(10, 196, 65, 33);
+		panel_1.add(lblNewLabel_9);
+		
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_10.setBounds(132, 196, 110, 33);
+		panel_1.add(lblNewLabel_10);
+		
 		table = new JTable();
-		String[] h={"身份证","姓名","费用"};
+		String[] h={"身份证","姓名","费用","医生"};
 		SQLMessage sm=new SQLMessage();
 	    Object[][]ob=null;
 	    ob=sm.getCharge();
@@ -118,13 +128,14 @@ import java.awt.event.ActionEvent;
 					String ID=table.getValueAt(row, 0).toString();
 					String name=table.getValueAt(row, 1).toString();
 				    String price=table.getValueAt(row, 2).toString();
+				    String doctor=table.getValueAt(row, 3).toString();
 				    lblNewLabel_5.setText(ID);
 				    lblNewLabel_6.setText(name);
 				    lblNewLabel_7.setText(price);
+				    lblNewLabel_10.setText(doctor);
 				    
 				}
-				
-				
+
 			}
 		});
 		btnNewButton.setFont(new Font("宋体", Font.PLAIN, 18));
@@ -181,6 +192,45 @@ import java.awt.event.ActionEvent;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				Connection con_1=null;
+				try {
+					Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//建立数据库连接
+				try {
+					con_1=DriverManager.getConnection("jdbc:sqlserver://localhost:1433; DatabaseName=Hospital","sa","sa");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			    Statement st_1=null;
+	         	try {
+	         		 st_1=con_1.createStatement();
+	         	} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	         	String sql_1="update orders set count=count+1,Tprice=Tprice+'"+Integer.parseInt( lblNewLabel_7.getText())+"' where name='"+lblNewLabel_10.getText()+"'";
+				try {
+					st_1.executeUpdate(sql_1);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();//增删改一般用executeUpdate方法
+				}
+				
+				try {
+					st_1.close();
+					con_1.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				lblNewLabel_8.setText("收费成功");
 				SQLMessage sm_1=new SQLMessage();
 			    Object[][]ob_1=null;

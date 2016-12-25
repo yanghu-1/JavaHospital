@@ -15,6 +15,7 @@ class Doctor {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -126,7 +127,7 @@ class Doctor {
 		textField_1.setColumns(10);
 		
 		String[] h={"身份证","姓名","性别","年龄"};
-		String[] h_1={"身份证","姓名","药品","数量","价格"};
+		String[] h_1={"药品","数量","价格"};
 		
 		JButton btnNewButton_2 = new JButton("\u6DFB\u52A0");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -212,6 +213,8 @@ class Doctor {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				
 				
 				SQLMessage sm=new SQLMessage();
 				Object[][] ob=null;
@@ -323,7 +326,7 @@ class Doctor {
 					e.printStackTrace();
 				}
 	         	
-	         	String sql="insert into Charge values('"+lblNewLabel_7.getText()+"', '"+lblNewLabel_8.getText()+"','"+Integer.parseInt(textField_3.getText())+"')";
+	         	String sql="insert into Charge values('"+lblNewLabel_7.getText()+"', '"+lblNewLabel_8.getText()+"','"+Integer.parseInt(textField_3.getText())+"','"+textField_4.getText()+"')";
 				try {
 					st.executeUpdate(sql);
 				} catch (SQLException e) {
@@ -404,8 +407,18 @@ class Doctor {
 			}
 		});
 		btnNewButton_4.setFont(new Font("宋体", Font.PLAIN, 18));
-		btnNewButton_4.setBounds(151, 325, 82, 43);
+		btnNewButton_4.setBounds(113, 325, 82, 43);
 		contentPane.add(btnNewButton_4);
+		
+		JLabel lblNewLabel_11 = new JLabel("\u533B\u751F\u7B7E\u5B57");
+		lblNewLabel_11.setFont(new Font("宋体", Font.PLAIN, 18));
+		lblNewLabel_11.setBounds(10, 387, 82, 39);
+		contentPane.add(lblNewLabel_11);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(113, 390, 106, 38);
+		contentPane.add(textField_4);
+		textField_4.setColumns(10);
 		
 		
 		

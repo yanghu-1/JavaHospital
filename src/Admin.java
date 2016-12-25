@@ -73,6 +73,9 @@ class Admin  {
 				if(rdbtnNewRadioButton_2.isSelected()){
 					Admin_3 ad_3=new Admin_3();
 				}
+				if(rdbtnNewRadioButton_3.isSelected()){
+					Charge ch=new Charge();
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("ËÎÌו", Font.PLAIN, 18));
