@@ -189,7 +189,7 @@ class Admin_2 {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					String sql="update orders set name='"+textField_1.getText()+"', count='"+Integer.parseInt(textField_2.getText())+"', Tprice='"+Integer.parseInt(textField_3.getText())+"'where RName='"+textField.getText()+"'";
+					String sql="update orders set count='"+Integer.parseInt(textField_2.getText())+"', Tprice='"+Integer.parseInt(textField_3.getText())+"'where name='"+textField_1.getText()+"'";
 					try {
 						st.executeUpdate(sql);
 					} catch (SQLException e) {
@@ -236,7 +236,7 @@ class Admin_2 {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					String sql="delete from orders where RName='"+textField.getText()+"'";
+					String sql="delete from orders where name='"+textField_1.getText()+"'";
 					try {
 						st.executeUpdate(sql);
 					} catch (SQLException e) {
@@ -260,7 +260,7 @@ class Admin_2 {
 					table.setModel(model);
 				}
 				if(lblNewLabel.getText().equals("Ôö¼Ó")){
-					Connection con=null;
+					/*Connection con=null;
 					try {
 						Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 					} catch (ClassNotFoundException e) {
@@ -302,7 +302,7 @@ class Admin_2 {
 							} catch (SQLException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
-							}
+							}*/
 		         			Connection co=null;
 							try {
 								Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -348,12 +348,12 @@ class Admin_2 {
 						    DefaultTableModel model=new DefaultTableModel(ob_3,h);
 							table.setModel(model);
 		         		}   
-		         	} catch (SQLException e) {
+		         	/*} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}*/
 				  
-				}
+				
 			}
 				
 		});
@@ -376,7 +376,7 @@ class Admin_2 {
 					textField_1.setText(name);
 					textField_2.setText(String.valueOf(count));
 					textField_3.setText(String.valueOf(Tprice));
-					textField_1.setEditable(true);
+					textField_1.setEditable(false);
 					textField_2.setEditable(true);
 					textField_3.setEditable(true);
 					

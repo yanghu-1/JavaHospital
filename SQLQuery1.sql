@@ -84,6 +84,8 @@ Rname varchar(10))
 
 insert into	Oppoint values('0001','王','男',18,'上理','内科')
 insert into Oppoint values('0002','李','男',20,'上理','内科')
+insert into PM values('0002','李','男',20,'上理','内科')
+
 
 select * from PLogin where pid='plogin';
 
@@ -104,3 +106,4 @@ price int)
 
 delete from Charge
 delete from med
+delete from orders

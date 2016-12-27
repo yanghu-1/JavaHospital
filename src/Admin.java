@@ -21,7 +21,7 @@ class Admin  {
 	 */
 
 	public Admin() {
-		JFrame frm=new JFrame("药师管理系统");
+		JFrame frm=new JFrame("管理员管理系统");
 		frm.setVisible(true);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frm.setBounds(100, 100, 453, 388);
